@@ -5,7 +5,19 @@ Page({
     data: {
         canIUseGetUserProfile: false,
         hasUserInfo: false,
-        userInfo: {}
+        userInfo: {},
+        status: '1',
+        curList: [{
+                id: 1,
+                title: '测试',
+                status: 1
+            },
+            {
+                id: 2,
+                title: '测试2',
+                status: 0
+            }
+        ]
     },
     onLoad() {
         if (wx.getUserProfile) {
@@ -30,6 +42,13 @@ Page({
         this.setData({
             userInfo: e.detail.userInfo,
             hasUserInfo: true
+        })
+    },
+    showStatus(e) {
+        var st = e.currentTarget.dataset.status;
+        if (this.data.status === st) return;
+        this.setData({
+            status: st,
         })
     }
 })
