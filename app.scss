@@ -1,74 +1,119 @@
-.userInfo{
+.userInfo {
     display: flex;
     justify-content: center;
     align-items: center;
-    & .userinfo-avatar{
+
+    & .userinfo-avatar {
         width: 60rpx;
         height: 60rpx;
         border-radius: 100%;
         margin-right: 20rpx;
     }
-    & .userinfo-nickname{
 
-    }
+    & .userinfo-nickname {}
 }
 
-.title-bar{
+.title-bar {
     display: flex;
     border-bottom: 1px solid #eee;
     padding: 40rpx 30rpx 10rpx 10rpx;
     align-items: center;
-    & .status{
-        flex:1;
 
-        & text{
+    & .status {
+        flex: 1;
+
+        & text {
             display: inline-block;
             padding: 10rpx 20rpx;
             margin-right: 20rpx;
-            &.active{
-                color: rgb(56, 161, 231);
+
+            &.active {
+                color: #07c160;
             }
         }
     }
-    & .add{
+
+    & .add {
         overflow: hidden;
         font-size: 0;
-        & button{
-            display: inline-block;
-            background-color: rgb(56, 161, 231);
-            &:active{
-                background-color: rgb(47, 137, 197);
-            }
-        }
     }
 }
 
-.list{
-    padding-top: 20rpx;
-    & .nodata{
+.list {
+    & .nodata {
         display: block;
-        text-align:center;
+        text-align: center;
         margin-top: 50rpx;
         color: rgb(134, 134, 134);
     }
 }
-.items{
-    display: flex;
-    align-items: center;
-    padding: 25rpx 30rpx;
+
+.items {
     border-bottom: 1px solid #eee;
-    & .icon-small{
+    position: relative;
+
+    &-content {
+        display: flex;
+        align-items: center;
+        padding: 25rpx 30rpx;
+        position: relative;
+        z-index: 10;
+        background-color: #fff;
+        transition: right .3s ease;
+    }
+
+    & .icon-small {
         margin-right: 15rpx;
     }
-    & .title{
+
+    & .title {
         flex: 1;
-        &.over{
+
+        &.over {
             text-decoration: line-through;
             color: rgb(134, 134, 134);
         }
     }
-    & .date{
+
+    & .date {
         color: rgb(134, 134, 134);
         font-size: 13px;
+    }
+
+    &-delete {
+        width: 120rpx;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: #f00;
+        color: #fff;
+        z-index: 9;
+    }
+}
+
+.addForm {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+
+    &.hide {
+        display: none;
+    }
+
+    &-div {
+        background-color: #fff;
+        padding: 20rpx 0;
+    }
+
+    &-btn {
+        margin-right: 10rpx;
     }
 }

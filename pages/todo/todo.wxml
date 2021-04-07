@@ -17,7 +17,7 @@
         <text class="{{status === '3'? 'active' : ''}}" data-status="3" bind:tap="showStatus">已完成</text>
     </view>
     <view class="add">
-        <button class="mini-btn" type="primary" size="mini" bind:tap="addTodo">+ 添加</button>
+        <button class="mini-btn" type="primary" size="mini" bind:tap="showAddForm">+ 添加</button>
     </view>
 </view>
 <scroll-view class="list">
@@ -25,9 +25,34 @@
         <text class="nodata">暂无数据</text>
     </block>
     <view class="items" wx:for="{{curList}}" wx:key="index">
-        <icon class="icon-small" type="{{item.status === 0 ?'circle':'success'}}" size="25" data-id="{{item.id}}">
-        </icon>
-        <text class="title {{item.status === 0 ?'':'over'}}">{{item.title}}</text>
-        <text class="date">8分钟前</text>
+        <view class="items-content" style="{{item.style}}" data-index="{{index}}" bind:touchstart="touchS"
+            bind:touchmove="touchM" bind:touchend="touchE">
+            <icon class="icon-small" type="{{item.status === 0 ?'circle':'success'}}" size="25" data-id="{{item.id}}"
+                bind:tap="changeTodo">
+            </icon>
+            <text class="title {{item.status === 0 ?'':'over'}}">{{item.title}}</text>
+            <text class="date">{{item.id}}</text>
+        </view>
+        <view class="items-delete" data-id="{{item.id}}" bind-tap="deleteTodo">
+            <text>删除</text>
+        </view>
     </view>
 </scroll-view>
+<view class="addForm {{addForm?'':'hide'}}">
+    <view class="addForm-div">
+        <view class="weui-cell weui-cell_active">
+            <view class="weui-cell__bd">
+                <input id="js_input" class="weui-input" value="{{addText}}" focus="{{focus}}" bind:input="setInput"
+                    placeholder="填写 TODO 事项" />
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_active">
+            <view class="weui-cell__bd">
+                <button class="weui-btn weui-btn_primary addForm-btn" size="mini" type="primary"
+                    bind:tap="addTodo">确认添加</button>
+                <button class="weui-btn weui-btn_default addForm-btn" size="mini" type="default"
+                    bind:tap="hideAddForm">取消</button>
+            </view>
+        </view>
+    </view>
+</view>
