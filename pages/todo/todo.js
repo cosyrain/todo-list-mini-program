@@ -205,15 +205,17 @@ Page({
     },
     touchE(e) {
         var _this = this;
-        console.log(1);
         if (e.changedTouches.length === 1) {
             var endX = e.changedTouches[0].clientX;
             var disX = _this.data.startX - endX;
             var delBtnWidth = _this.data.delBtnWidth;
             var style = disX >= delBtnWidth / 2 ? `right:${delBtnWidth}rpx` : `right:0`;
-            console.log(style);
             var index = e.currentTarget.dataset.index;
             var curList = _this.data.curList;
+
+            curList.forEach(el => {
+                el.style = 'right:0;'
+            })
             curList[index].style = style;
             this.setData({
                 curList: curList
