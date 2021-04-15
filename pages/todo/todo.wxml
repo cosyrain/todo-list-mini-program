@@ -33,7 +33,7 @@
             <text class="title {{item.status === 0 ?'':'over'}}">{{item.title}}</text>
             <text class="date">{{item.id}}</text>
         </view>
-        <view class="items-delete" data-id="{{item.id}}" bind-tap="deleteTodo">
+        <view class="items-delete" data-id="{{item.id}}" bind:tap="deleteTodo">
             <text>删除</text>
         </view>
     </view>

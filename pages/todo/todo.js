@@ -219,5 +219,32 @@ Page({
                 curList: curList
             })
         }
+    },
+    deleteTodo(e) {
+        var _this = this;
+        var id = e.currentTarget.dataset.id;
+        var tempList = _this.data.list;
+
+        tempList.forEach((el, index) => {
+            el.style = 'right:0;';
+            if (el.id === id) {
+                wx.showModal({
+                    title: '',
+                    content: '确认删除此代办',
+                    success: (res) => {
+                        if (res.confirm) {
+                            tempList.splice(index, 1);
+                            _this.setCurrent(tempList);
+                            wx.setStorage({
+                                key: 'list',
+                                data: tempList
+                            })
+                        } else {
+                            _this.setCurrent(tempList);
+                        }
+                    }
+                })
+            }
+        })
     }
 })
